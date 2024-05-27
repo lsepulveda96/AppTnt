@@ -55,7 +55,7 @@ abstract class EncuestaRoomDatabase : RoomDatabase() {
 
         private class EncuestaDatabaseCallback(
             private val scope: CoroutineScope
-        ) : RoomDatabase.Callback() {
+        ) : Callback() {
             /* importante: destacar el scope como parametro */
 
             /**

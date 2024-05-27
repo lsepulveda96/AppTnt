@@ -46,11 +46,11 @@ abstract class AlimentoRoomDatabase : RoomDatabase() {
 
         private class AlimentoDatabaseCallback(
             private val scope: CoroutineScope
-        ) : RoomDatabase.Callback() {
+        ) : Callback() {
 
             override fun onOpen(db: SupportSQLiteDatabase) {
                 super.onOpen(db)
-                AlimentoRoomDatabase.INSTANCIA?.let { database ->
+                INSTANCIA?.let { database ->
                     scope.launch {
                         cargarBaseDeDatos(database.alimentoDao())
                     }

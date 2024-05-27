@@ -31,12 +31,10 @@ class MainActivity : AppCompatActivity()  {
 
         encuestaViewModel.getAllEncuestas()
             .observe(
-                this,
-                Observer {
-                        encuestas ->
-                    encuestas?.let{ adapterList.setEncuestas(it) }
-                }
-            )
+                this
+            ) { encuestas ->
+                encuestas?.let { adapterList.setEncuestas(it) }
+            }
 
         setContentView(view)
     }

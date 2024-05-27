@@ -10,7 +10,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import unpsjb.ing.tntpm2024.basededatos.alimentos.Alimento
 import unpsjb.ing.tntpm2024.basededatos.encuestas.Encuesta
-import unpsjb.ing.tntpm2024.basededatos.encuestas.EncuestaRoomDatabase
 
 @Database(
     entities = [
@@ -21,7 +20,7 @@ import unpsjb.ing.tntpm2024.basededatos.encuestas.EncuestaRoomDatabase
 )
 abstract class EncuestasDatabase: RoomDatabase() {
 
-    abstract val encuestaDAO: EncuestaDAO;
+    abstract val encuestaDAO: EncuestaDAO
 
     companion object {
         @Volatile
@@ -42,7 +41,7 @@ abstract class EncuestasDatabase: RoomDatabase() {
 
     private class EncuestasDatabaseCallback(
         private val scope: CoroutineScope
-    ) : RoomDatabase.Callback() {
+    ) : Callback() {
 
         override fun onOpen(db: SupportSQLiteDatabase) {
             super.onOpen(db)

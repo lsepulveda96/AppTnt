@@ -1,6 +1,5 @@
 package unpsjb.ing.tntpm2024.basededatos
 
-import android.adservices.adid.AdId
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import unpsjb.ing.tntpm2024.basededatos.encuestas.Encuesta

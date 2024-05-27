@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,6 +30,10 @@ class EncuestaViewModel(application: Application) : AndroidViewModel(application
 
     fun insert(encuesta: Encuesta) = viewModelScope.launch(Dispatchers.IO) {
         repository.insertarEncuesta(encuesta)
+    }
+
+    fun getAllEncuestas():LiveData<List<Encuesta>> {
+        return this.allEncuestas
     }
 
     fun getAllAlimentos():LiveData<List<Alimento>> {

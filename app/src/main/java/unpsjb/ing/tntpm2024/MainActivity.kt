@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity()  {
 
         encuestaViewModel = ViewModelProvider(this)[EncuestaViewModel::class.java]
 
-        encuestaViewModel.todasLasEncuestas
+        encuestaViewModel.getAllEncuestas()
             .observe(
                 this,
                 Observer {

@@ -1,7 +1,6 @@
 package unpsjb.ing.tntpm2024.basededatos
 
 import androidx.lifecycle.LiveData
-import unpsjb.ing.tntpm2024.basededatos.EncuestaDAO
 import unpsjb.ing.tntpm2024.basededatos.alimentos.Alimento
 import unpsjb.ing.tntpm2024.basededatos.encuestas.Encuesta
 import unpsjb.ing.tntpm2024.basededatos.relaciones.AlimentoEncuesta

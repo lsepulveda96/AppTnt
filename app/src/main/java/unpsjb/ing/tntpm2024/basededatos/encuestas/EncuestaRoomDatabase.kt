@@ -2,6 +2,7 @@ package unpsjb.ing.tntpm2024.basededatos.encuestas
 
 import android.content.Context
 import android.util.Log
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -15,8 +16,12 @@ import unpsjb.ing.tntpm2024.util.CalendarConverters
 // con una Tabla (entity) de la clase Partido
 
 @TypeConverters(CalendarConverters::class)
-@Database(entities = [Encuesta::class], version = 1, exportSchema = false)
-public abstract class EncuestaRoomDatabase : RoomDatabase() {
+@Database(entities = [Encuesta::class],
+            version = 2,
+            autoMigrations = [
+                AutoMigration (from = 1, to = 2)
+                             ])
+abstract class EncuestaRoomDatabase : RoomDatabase() {
 
     // ctrl + p para buscar archivos
     abstract fun encuestaDao(): EncuestaDAO

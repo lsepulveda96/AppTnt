@@ -1,6 +1,7 @@
 package unpsjb.ing.tntpm2024.basededatos.alimentos
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -9,8 +10,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import unpsjb.ing.tntpm2024.basededatos.encuestas.Encuesta
 
-@Database(entities = [Alimento::class], version = 1, exportSchema = false)
-public abstract class AlimentoRoomDatabase : RoomDatabase() {
+@Database(entities = [Alimento::class],
+            version = 2,
+            autoMigrations = [
+                AutoMigration (from = 1, to = 2)
+            ])
+abstract class AlimentoRoomDatabase : RoomDatabase() {
 
     abstract fun alimentoDao(): AlimentoDAO
 

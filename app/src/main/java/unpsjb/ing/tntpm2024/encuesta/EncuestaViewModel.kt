@@ -8,56 +8,50 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import unpsjb.ing.tntpm2024.basededatos.EncuestasDatabase
+import unpsjb.ing.tntpm2024.basededatos.Repository
+import unpsjb.ing.tntpm2024.basededatos.alimentos.Alimento
 import unpsjb.ing.tntpm2024.basededatos.encuestas.Encuesta
-import unpsjb.ing.tntpm2024.basededatos.encuestas.EncuestaRoomDatabase
-import unpsjb.ing.tntpm2024.basededatos.encuestas.RepositorioDeEncuestas
 
 class EncuestaViewModel(application: Application) : AndroidViewModel(application) {
 
-
-    private val repository: RepositorioDeEncuestas
-    val todasLasEncuestas: LiveData<List<Encuesta>>
+    private val repository : Repository
+    private val allEncuestas: LiveData<List<Encuesta>>
+    private val allAlimentos: LiveData<List<Alimento>>
 
     init {
-        val encuestasDao = EncuestaRoomDatabase
-            .obtenerDatabase(application, viewModelScope).encuestaDao()
 
-        repository = RepositorioDeEncuestas(encuestasDao)
-        todasLasEncuestas = repository.todasLasEncuestas
+        val dao = EncuestasDatabase.getInstance(application).encuestaDAO
+
+        repository = Repository(dao)
+        allEncuestas = repository.allEncuestas
+        allAlimentos = repository.allAlimentos
+
     }
 
     fun insert(encuesta: Encuesta) = viewModelScope.launch(Dispatchers.IO) {
-        repository.insertar(encuesta)
+        repository.insertarEncuesta(encuesta)
     }
 
-    fun editEncuesta(
+    fun getAllAlimentos():LiveData<List<Alimento>> {
+        return this.allAlimentos
+    }
+
+    fun getAlimentoByName(nombre: String): Alimento {
+        return repository.getAlimentoByNombre(nombre)
+    }
+
+/*    fun editEncuesta(
         encuestaId: Int,
-        aliemento: String?,
+        alimento: Alimento?,
         porcion: String?,
         frecuencia: String?,
         veces: String?,
         fecha: Long,
         encuestaCompletada: Boolean
     ) = viewModelScope.launch(Dispatchers.IO) {
-        repository.editEncuesta(
-            encuestaId,
-            aliemento,
-            porcion,
-            frecuencia,
-            veces,
-            fecha,
-            encuestaCompletada
-        )
     }
-
-    fun getEncuesta(searchQuery: String): LiveData<List<Encuesta>> {
-        return repository.getEncuesta(searchQuery).asLiveData()
-    }
-
-    fun deleteEncuesta(encuestaId: Int) = viewModelScope.launch(Dispatchers.IO) {
-        repository.deleteEncuesta(encuestaId)
-    }
-
+*/
 
     private var _alimento = MutableLiveData<String>("")
     val alimento: LiveData<String>

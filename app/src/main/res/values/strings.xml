@@ -13,6 +13,10 @@
         <item>275ml</item>
     </string-array>
 
+    <string-array name="opcionesAlimento">
+        <item>Yogur bebible</item>
+    </string-array>
+
     <string-array name="opcionesFrecuencia">
         <item>Dia</item>
         <item>Semana</item>

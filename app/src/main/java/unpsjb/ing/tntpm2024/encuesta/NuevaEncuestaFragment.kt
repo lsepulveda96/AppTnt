@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.map
 import unpsjb.ing.tntpm2024.R
 import unpsjb.ing.tntpm2024.basededatos.encuestas.Encuesta
 import unpsjb.ing.tntpm2024.databinding.FragmentNuevaEncuestaBinding
@@ -37,6 +38,16 @@ class NuevaEncuestaFragment : Fragment() {
         binding.numberPicker.value = viewModel.veces.value!!
 
         val t = inflater.inflate(R.layout.fragment_nueva_encuesta,container,false)
+
+        val spinnerAlimento = binding.spinnerAlimento
+
+//        val alimentosList = viewModel.getAllAlimentos()
+//        val nombresAlimentos = alimentosList.map { it.first().nombre }
+
+        val valoresAlimento = resources.getStringArray(R.array.opcionesAlimento)
+        val adaptadorAlimentos = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, valoresAlimento)
+        spinnerAlimento.adapter = adaptadorAlimentos
+
 
         val spinnerPorcion = binding.spinnerPorcion
 
@@ -83,8 +94,10 @@ class NuevaEncuestaFragment : Fragment() {
         val fechaActual: Date = Date() // Crea un objeto Date con la fecha actual
         val fechaLong: Long = fechaActual.time // Convierte Date a Long
 
+        val alimento = viewModel.getAlimentoByName(binding.spinnerAlimento.selectedItem as String)
+
         val encuesta = Encuesta(
-            alimento = "Yogur Bebible",
+            alimento = alimento,
             porcion = valorPorcion,
             frecuencia = valorFrecuencia,
             veces = valorVeces,

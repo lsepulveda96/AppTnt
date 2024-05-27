@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity()  {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
 
-        encuestaViewModel = ViewModelProvider(this).get(EncuestaViewModel::class.java)
+        encuestaViewModel = ViewModelProvider(this)[EncuestaViewModel::class.java]
 
         encuestaViewModel.todasLasEncuestas
             .observe(

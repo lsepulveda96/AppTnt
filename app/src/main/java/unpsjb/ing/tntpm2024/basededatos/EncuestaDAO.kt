@@ -36,7 +36,7 @@ interface EncuestaDAO {
     fun getAlimentos(): LiveData<List<Alimento>>
 
     @Transaction
-    @Query("SELECT alimento FROM tabla_alimento WHERE nombre = :nombre")
+    @Query("SELECT * FROM tabla_alimento WHERE nombre = :nombre")
     fun getAlimentoByName(nombre: String): Alimento
 
     @Transaction

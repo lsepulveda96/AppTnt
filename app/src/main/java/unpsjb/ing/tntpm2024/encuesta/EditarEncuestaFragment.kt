@@ -96,13 +96,11 @@ class EditarEncuestaFragment : Fragment() {
         val valorPorcion: String = binding.spinnerPorcion.selectedItem as String
         val valorFrecuencia: String = binding.spinnerFrecuencia.selectedItem as String
         val valorVeces: String = binding.numberPicker.value.toString()
-        val fechaActual: Date = Date() // Crea un objeto Date con la fecha actual
-        val fechaLong: Long = fechaActual.time // Convierte Date a Long
 
 
         // para guardar encuesta
-        viewModel.editEncuesta(args.encuestaId,"Yogur Bebible", valorPorcion, valorFrecuencia, valorVeces, fechaLong, encuestaCompletada)
-        requireActivity().supportFragmentManager.popBackStack()
+//        viewModel.editEncuesta(args.encuestaId,"Yogur Bebible", valorPorcion, valorFrecuencia, valorVeces, fechaLong, encuestaCompletada)
+//        requireActivity().supportFragmentManager.popBackStack()
     }
 }
 

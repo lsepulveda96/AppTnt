@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -36,6 +38,10 @@ class EncuestaViewModel(application: Application) : AndroidViewModel(application
         return this.allEncuestas
     }
 
+    fun getEncuesta(searchQuery: String): LiveData<List<Encuesta>> {
+        return repository.getEncuesta(searchQuery).asLiveData()
+    }
+
     fun getAllAlimentos():LiveData<List<Alimento>> {
         return this.allAlimentos
     }
@@ -44,20 +50,19 @@ class EncuestaViewModel(application: Application) : AndroidViewModel(application
         return repository.getAlimentoByNombre(nombre)
     }
 
-/*    fun editEncuesta(
+    fun editEncuesta(
         encuestaId: Int,
         alimento: Alimento?,
         porcion: String?,
         frecuencia: String?,
         veces: String?,
-        fecha: Long,
         encuestaCompletada: Boolean
     ) = viewModelScope.launch(Dispatchers.IO) {
     }
-*/
 
-    private var _alimento = MutableLiveData<String>("")
-    val alimento: LiveData<String>
+
+    private var _alimento = MutableLiveData<Alimento>()
+    val alimento: LiveData<Alimento>
         get() = _alimento
 
     private var _porcion = MutableLiveData<String>("")

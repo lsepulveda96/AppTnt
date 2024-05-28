@@ -9,8 +9,8 @@ data class AlimentoEncuesta(
     @Embedded
     val alimento: Alimento,
     @Relation(
-        parentColumn = "encuestaId",
-        entityColumn = "encuestaId"
+        parentColumn = "alimentoId",
+        entityColumn = "alimentoId"
     )
     val encuesta: Encuesta
 )

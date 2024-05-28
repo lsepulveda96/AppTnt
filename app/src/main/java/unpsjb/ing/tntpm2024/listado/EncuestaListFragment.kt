@@ -77,7 +77,7 @@ class EncuestaListFragment : Fragment() {
 
         encuestaViewModel = ViewModelProvider(this).get(EncuestaViewModel::class.java)
 
-        encuestaViewModel.todasLasEncuestas
+        encuestaViewModel.getAllEncuestas()
             .observe(
                 viewLifecycleOwner,
                 Observer {
@@ -106,18 +106,17 @@ class EncuestaListFragment : Fragment() {
             findNavController().navigate(EncuestaListFragmentDirections.actionEncuestalistToEditarEncuestaFragment(
                 // set frecuencia etc por parametros
                 encuestaId = it.encuestaId,
-                aliemento = it.alimento,
+                aliemento = it.alimento.nombre,
                 frecuencia = it.frecuencia,
                 porcion = it.porcion,
                 veces = it.veces,
                 encuestaCompletada = it.encuestaCompletada
             ))}
 
-        adapterList.onSwipToDeleteCallback = {
-            encuestaViewModel.deleteEncuesta(it.encuestaId)
-            Toast.makeText(context, "encuesta borrada", Toast.LENGTH_SHORT).show()
-
-        }
+//        adapterList.onSwipToDeleteCallback = {
+//            encuestaViewModel.deleteEncuesta(it.encuestaId)
+//            Toast.makeText(context, "encuesta borrada", Toast.LENGTH_SHORT).show()
+//        }
 
         return binding.root
     }

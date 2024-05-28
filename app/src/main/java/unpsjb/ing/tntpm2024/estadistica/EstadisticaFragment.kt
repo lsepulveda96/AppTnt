@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import unpsjb.ing.tntpm2024.R
 
+
 class EstadisticaFragment : Fragment() {
 
     companion object {

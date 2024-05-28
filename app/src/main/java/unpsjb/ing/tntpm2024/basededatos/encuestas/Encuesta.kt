@@ -18,8 +18,6 @@ data class Encuesta(
     var frecuencia:String,
     @ColumnInfo(name = "veces")
     var veces: String,
-    @ColumnInfo(name = "fecha")
-    var fecha: Long,
     @ColumnInfo(name = "encuestaCompletada")
     var encuestaCompletada: Boolean
 

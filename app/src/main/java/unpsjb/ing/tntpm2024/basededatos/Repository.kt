@@ -1,6 +1,7 @@
 package unpsjb.ing.tntpm2024.basededatos
 
 import androidx.lifecycle.LiveData
+import kotlinx.coroutines.flow.Flow
 import unpsjb.ing.tntpm2024.basededatos.alimentos.Alimento
 import unpsjb.ing.tntpm2024.basededatos.encuestas.Encuesta
 import unpsjb.ing.tntpm2024.basededatos.relaciones.AlimentoEncuesta
@@ -13,6 +14,10 @@ class Repository(private val encuestaDAO: EncuestaDAO) {
 
     suspend fun insertarEncuesta(encuesta: Encuesta) {
         encuestaDAO.insertEncuesta(encuesta)
+    }
+
+    fun getEncuesta(searchQuery: String) : Flow<List<Encuesta>> {
+        return encuestaDAO.getEncuesta(searchQuery)
     }
 
     fun getCantidadEncuestas(): Int {
@@ -31,17 +36,17 @@ class Repository(private val encuestaDAO: EncuestaDAO) {
         return encuestaDAO.getAlimentoByName(nombre)
     }
 
-    fun getEncuestasByAlimentos(alimentoId: Int): LiveData<List<AlimentoEncuesta>> {
-        return encuestaDAO.getEncuestasByAlimentos(alimentoId)
-    }
+//    fun getEncuestasByAlimentos(alimentoId: Int): LiveData<List<AlimentoEncuesta>> {
+//        return encuestaDAO.getEncuestasByAlimentos(alimentoId)
+//    }
 
 
     fun getCantidadAlimentos(): Int {
         return encuestaDAO.getCantidadAlimentos()
     }
 
-    suspend fun insertarAlimentoEncuesta(alimentoEncuesta: AlimentoEncuesta) {
-        encuestaDAO.insertAlimentoEncuesta(alimentoEncuesta)
-    }
+//    suspend fun insertarAlimentoEncuesta(alimentoEncuesta: AlimentoEncuesta) {
+//        encuestaDAO.insertAlimentoEncuesta(alimentoEncuesta)
+//    }
 
 }

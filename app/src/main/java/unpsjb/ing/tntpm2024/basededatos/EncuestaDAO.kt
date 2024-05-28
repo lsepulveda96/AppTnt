@@ -2,6 +2,7 @@ package unpsjb.ing.tntpm2024.basededatos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 import unpsjb.ing.tntpm2024.basededatos.encuestas.Encuesta
 import unpsjb.ing.tntpm2024.basededatos.alimentos.Alimento
 import unpsjb.ing.tntpm2024.basededatos.relaciones.AlimentoEncuesta
@@ -15,12 +16,15 @@ interface EncuestaDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAlimento(alimento: Alimento)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAlimentoEncuesta(alimentoEncuesta: AlimentoEncuesta)
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    suspend fun insertAlimentoEncuesta(alimentoEncuesta: AlimentoEncuesta)
 
     @Transaction
     @Query("SELECT * FROM tabla_encuesta")
     fun getEncuestas(): LiveData<List<Encuesta>>
+
+    @Query("SELECT * from tabla_encuesta WHERE nombre LIKE :searchQuery")
+    fun getEncuesta(searchQuery: String): Flow<List<Encuesta>>
 
     @Transaction
     @Query("SELECT COUNT(encuestaId) from tabla_encuesta")
@@ -42,8 +46,8 @@ interface EncuestaDAO {
     @Query("SELECT COUNT(alimentoId) from tabla_alimento")
     fun getCantidadAlimentos(): Int
 
-    @Transaction
-    @Query("SELECT * FROM tabla_encuesta WHERE alimentoId = :alimentoId")
-    fun getEncuestasByAlimentos(alimentoId: Int): LiveData<List<AlimentoEncuesta>>
+//    @Transaction
+//    @Query("SELECT * FROM tabla_encuesta WHERE alimento = :alimento")
+//    fun getEncuestasByAlimentos(alimento: Alimento): LiveData<List<AlimentoEncuesta>>
 
 }

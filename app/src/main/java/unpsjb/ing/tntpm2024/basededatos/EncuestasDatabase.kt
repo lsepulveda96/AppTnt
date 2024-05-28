@@ -2,6 +2,7 @@ package unpsjb.ing.tntpm2024.basededatos
 
 import android.content.Context
 import android.util.Log
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -16,7 +17,8 @@ import unpsjb.ing.tntpm2024.basededatos.encuestas.Encuesta
         Encuesta::class,
         Alimento::class
     ],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class EncuestasDatabase: RoomDatabase() {
 

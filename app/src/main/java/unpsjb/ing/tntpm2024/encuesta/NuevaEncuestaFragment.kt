@@ -41,7 +41,7 @@ class NuevaEncuestaFragment : Fragment() {
         val spinnerAlimento = binding.spinnerAlimento
 
 //        val alimentosList = viewModel.getAllAlimentos()
-//        val nombresAlimentos = alimentosList.map { it.first().nombre }
+//        val nombresAlimentos = Transformations.map
 
         val valoresAlimento = resources.getStringArray(R.array.opcionesAlimento)
         val adaptadorAlimentos = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, valoresAlimento)
@@ -100,7 +100,6 @@ class NuevaEncuestaFragment : Fragment() {
             porcion = valorPorcion,
             frecuencia = valorFrecuencia,
             veces = valorVeces,
-            fecha =  fechaLong,
             encuestaCompletada = encuestaCompletada
         )
 

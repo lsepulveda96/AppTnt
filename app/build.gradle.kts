@@ -5,6 +5,7 @@ plugins {
     id("kotlin-kapt")
     // Add the Google services Gradle plugin
     id("com.google.gms.google-services")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 
 }
 
@@ -48,6 +49,8 @@ android {
 
 dependencies {
 
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
     val nav_version = "2.3.5"
     // Navigation Kotlin
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")

@@ -10,90 +10,40 @@
             type="unpsjb.ing.tntpm2024.estadistica.EstadisticaViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pieChart"
+        <Spinner
+            android:id="@+id/spinner_items"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="48dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/cardview_light_background"/>
 
-        <LinearLayout
-            android:id="@+id/layoutStats"
-            android:gravity="start"
-            android:layout_marginLeft="20dp"
+        <TextView
+            android:id="@+id/textview_promedio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:text=""
+            android:textAlignment="center"
+            android:layout_marginTop="100dp"
+            android:textColor="@color/dark_green"
+            android:textSize="40sp" />
 
-            <LinearLayout
-                android:id="@+id/layoutDiario"
-                android:gravity="start"
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textview_descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp" />
 
-                <TextView
-                    android:id="@+id/tvDiario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Consumo diario promedio: " />
-
-                <TextView
-                    android:id="@+id/consumoDiarioText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutSemanal"
-                android:gravity="start"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tvSemanas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Consumo semanal promedio: " />
-
-                <TextView
-                    android:id="@+id/consumoSemanalText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutMensual"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tvMensual"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Consumo mensual promedio: " />
-
-                <TextView
-                    android:id="@+id/consumoMensualText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </layout>
+

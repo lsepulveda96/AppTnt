@@ -5,11 +5,13 @@ import androidx.lifecycle.LiveData
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import unpsjb.ing.tntpm2024.basededatos.entidades.Encuesta
+import unpsjb.ing.tntpm2024.basededatos.entidades.EstadisticasConsumo
 import unpsjb.ing.tntpm2024.detalle.AlimentoEncuestaDetalles
 
 class Repository(private val encuestaDAO: EncuestaDAO) {
 
     val allEncuestas: LiveData<List<Encuesta>> = encuestaDAO.getEncuestas()
+    val promediosEncuestas: LiveData<EstadisticasConsumo> = encuestaDAO.getPromediosEncuestas()
     private val database = FirebaseDatabase.getInstance()
     private val dbRef = database.reference
 

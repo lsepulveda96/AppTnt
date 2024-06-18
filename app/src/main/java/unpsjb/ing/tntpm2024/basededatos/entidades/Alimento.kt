@@ -17,4 +17,16 @@ data class Alimento(
     var medida: String,
     @ColumnInfo(name = "porcentaje_graso")
     var porcentajeGraso: Double,
+    @ColumnInfo(name = "kcal_totales")
+    var kcalTotales: Double,
+    @ColumnInfo(name = "carbohidratos")
+    var carbohidratos: Double,
+    @ColumnInfo(name = "proteinas")
+    var proteinas: Double,
+    @ColumnInfo(name = "alcohol")
+    var alcohol: Double,
+    @ColumnInfo(name = "colesterol")
+    var colesterol: Double,
+    @ColumnInfo(name = "fibra")
+    var fibra: Double
 )

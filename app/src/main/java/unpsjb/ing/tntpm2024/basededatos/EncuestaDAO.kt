@@ -3,6 +3,7 @@ package unpsjb.ing.tntpm2024.basededatos
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import unpsjb.ing.tntpm2024.basededatos.entidades.Encuesta
+import unpsjb.ing.tntpm2024.basededatos.entidades.EstadisticasConsumo
 import unpsjb.ing.tntpm2024.detalle.AlimentoEncuestaDetalles
 
 @Dao
@@ -18,6 +19,22 @@ interface EncuestaDAO {
             "INNER JOIN tabla_alimento alimentos ON alimentos.alimentoId = ae.alimentoId " +
             "WHERE alimentos.nombre LIKE :searchQuery")
     fun getEncuesta(searchQuery: String): LiveData<List<Encuesta>>
+
+    @Query("""
+        SELECT 
+            AVG(tabla_alimento_encuesta.porcion * tabla_alimento_encuesta.veces * tabla_alimento.porcentaje_graso) AS avgGrasasTotales,
+            AVG(tabla_alimento_encuesta.porcion * tabla_alimento_encuesta.veces * tabla_alimento.kcal_totales) AS avgKcalTotales,
+            AVG(tabla_alimento_encuesta.porcion * tabla_alimento_encuesta.veces * tabla_alimento.carbohidratos) AS avgCarbohidratos,
+            AVG(tabla_alimento_encuesta.porcion * tabla_alimento_encuesta.veces * tabla_alimento.proteinas) AS avgProteinas,
+            AVG(tabla_alimento_encuesta.porcion * tabla_alimento_encuesta.veces * tabla_alimento.alcohol) AS avgAlcohol,
+            AVG(tabla_alimento_encuesta.porcion * tabla_alimento_encuesta.veces * tabla_alimento.colesterol) AS avgColesterol,
+            AVG(tabla_alimento_encuesta.porcion * tabla_alimento_encuesta.veces * tabla_alimento.fibra) AS avgFibra
+        FROM tabla_alimento_encuesta
+        INNER JOIN tabla_alimento ON tabla_alimento.alimentoId = tabla_alimento_encuesta.alimentoId
+        INNER JOIN tabla_encuesta ON tabla_encuesta.encuestaId = tabla_alimento_encuesta.encuestaId 
+        WHERE tabla_encuesta.encuestaCompletada = 'True'
+    """)
+    fun getPromediosEncuestas(): LiveData<EstadisticasConsumo>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEncuesta(encuesta: Encuesta)

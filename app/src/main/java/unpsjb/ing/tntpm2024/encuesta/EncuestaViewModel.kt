@@ -12,17 +12,20 @@ import kotlinx.coroutines.launch
 import unpsjb.ing.tntpm2024.basededatos.EncuestasDatabase
 import unpsjb.ing.tntpm2024.basededatos.Repository
 import unpsjb.ing.tntpm2024.basededatos.entidades.Encuesta
+import unpsjb.ing.tntpm2024.basededatos.entidades.EstadisticasConsumo
 import unpsjb.ing.tntpm2024.detalle.AlimentoEncuestaDetalles
 
 class EncuestaViewModel(database: EncuestasDatabase) : ViewModel() {
 
     private val repository: Repository
     val todasLasEncuestas: LiveData<List<Encuesta>>
+    val estadisticasConsumo: LiveData<EstadisticasConsumo>
 
     init {
         val dao = database.encuestaDAO
         repository = Repository(dao)
         todasLasEncuestas = repository.allEncuestas
+        estadisticasConsumo = repository.promediosEncuestas
     }
 
     fun insert(encuesta: Encuesta) = viewModelScope.launch(Dispatchers.IO) {

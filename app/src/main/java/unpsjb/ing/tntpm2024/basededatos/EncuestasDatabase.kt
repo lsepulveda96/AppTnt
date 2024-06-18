@@ -58,7 +58,6 @@ abstract class EncuestasDatabase : RoomDatabase() {
             super.onOpen(db)
             INSTANCE?.let { database ->
                 scope.launch {
-                    cargarDatabase(database.encuestaDAO)
                     populateDatabase(database.alimentoDao())
                 }
             }
@@ -72,41 +71,54 @@ abstract class EncuestasDatabase : RoomDatabase() {
                         nombre = "Manzana",
                         categoria = "Fruta",
                         medida = "Unidad",
-                        porcentajeGraso = 0.2
+                        porcentajeGraso = 0.2,
+                        kcalTotales = 58.2,
+                        carbohidratos = 13.8,
+                        proteinas = 0.3,
+                        alcohol = 0.0,
+                        colesterol = 0.0,
+                        fibra = 2.4
                     ),
                     Alimento(
                         nombre = "Leche",
                         categoria = "Lácteo",
                         medida = "Litro",
-                        porcentajeGraso = 3.5
+                        porcentajeGraso = 3.0,
+                        kcalTotales = 57.9,
+                        carbohidratos = 4.6,
+                        proteinas = 3.1,
+                        alcohol = 0.0,
+                        colesterol = 10.1,
+                        fibra = 0.0
                     ),
                     Alimento(
                         nombre = "Pan",
                         categoria = "Cereal",
                         medida = "Gramo",
-                        porcentajeGraso = 1.0
+                        porcentajeGraso = 1.3,
+                        kcalTotales = 210.0,
+                        carbohidratos = 52.2,
+                        proteinas = 7.5,
+                        alcohol = 0.0,
+                        colesterol = 0.0,
+                        fibra = 5.3
+                    ),
+                    Alimento(
+                        nombre = "Carne picada",
+                        categoria = "Carne",
+                        medida = "Gramo",
+                        porcentajeGraso = 9.4,
+                        kcalTotales = 165.1,
+                        carbohidratos = 0.0,
+                        proteinas = 20.2,
+                        alcohol = 0.0,
+                        colesterol = 65.3,
+                        fibra = 0.0
                     )
                 )
                 alimentoDao.insertAll(alimentos)
             }
         }
 
-        suspend fun cargarDatabase(encuestaDAO: EncuestaDAO) {
-            Log.i("EncuestasDatabase", "cargarDatabase")
-            // Descomentar para precargar datos iniciales
-            /*
-            if(encuestaDAO.getCantidadAlimentos() == 0) {
-                encuestaDAO.insertAlimento(
-                    Alimento(
-                        1,
-                        "Yogur bebible",
-                        "liquido",
-                        "ml",
-                        0.8
-                    )
-                )
-            }
-            */
-        }
     }
 }
